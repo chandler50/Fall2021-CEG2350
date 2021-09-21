@@ -1,75 +1,130 @@
-# Lab 04 - NOT FINALIZED
+# Lab 04
+
+- [Lab Procedure](#Lab-Procedure)
+- [Part 1 - Regular Expressions](#Part-1---Regular-Expressions)
+- [Part 2 - .profile and PATH](#Part-2---.profile-and-PATH)
+- [Part 3 - Parsing Data](#Part-3---Parsing-Data)
+- [Submission](#Submission)
+- [Rubric](#Rubric)
 
 ## Lab Procedure
 
-**For each step, include the command you used to perform the direction or answer the question posed.** If you did something "wrong" make a note of it in your lab. These are learning experiences - writing them down will help you ask good questions later.  
-`ssh` in to your AWS environment. If you've forgotten your key, you'll need to provision a new stack in AWS Educate and create a new key.  
-See [Remaking your AWS Educate environment](../../..) for instructions.
+In your terminal, head to your repository (the folder named `ceg2350-yourgithubusername).
 
-1. Go to the folder in which you cloned your Git repository for this course.
-   - Path of `/home/ubuntu/spring2021-ceg2350-YOURGITHUBUSERNAME/` OR `/home/ubuntu/git/spring2021-ceg2350-YOURGITHUBUSERNAME/` depending on your setup
-2. Create a directory called `Lab04`
-   - Path of `/home/ubuntu/spring2021-ceg2350-YOURGITHUBUSERNAME/Lab04` OR `/home/ubuntu/git/spring2021-ceg2350-YOURGITHUBUSERNAME/Lab04` depending on your setup
-3. In this directory, create a file called `README.md`
-4. This `README.md` file is where you will put your answers to this lab. I recommend creating two connections to your Linux AWS so you can keep the `README.md` file open while you expirement with the lab.
-   - At the top of the file please enter your personal details as follows:
+Create a new directory, `Lab04`
 
-```
-Name: Your name
-Email: Your email
+This lab will have you creating input files, scripts, and output files.  All of your work should be found here.
 
-```
+Same questions will need you to write anwers in `Lab04.md` the [LabTemplate.md is here](LabTemplate.md).
+   - [Raw version of LabTemplate.md](https://raw.githubusercontent.com/pattonsgirl/Fall2021-CEG2350/main/Labs/Lab04/LabTemplate.md)
 
-## Part 1: Regular Expressions (5 pts)
+For each part below, you will be asked to do an action or answer a question.  The actions are going to be commands - you will write the command you used as "answers" to the action requested.  You are allowed to use multiple commands to solve an action.  Just write down all that were needed to complete.  Check with the TAs if you need clarification.
 
-1. On your Linux AWS system, use the package manager `apt` to install a package named `wamerican`. Write the command you used in your lab notes.
-2. Verify `/usr/share/dict/words` exists. If it does not, see if `/usr/dict/words` exists.  Write which one is correct in your lab notes.
-3. For the `grep` command, describe what the `-c`, `-E` and `-i` options do. (1 pt)
-  * Note, for the exercises below, you may use either `egrep` or `grep -E`
-4. For each below, write the `grep` command you used as well as the answer.
+If you did something "wrong" make a note of it in your lab. These are learning experiences - writing them down will help you ask good questions later. 
 
-- How many words in the `words` file start with a vowel (uppercase OR lowercase)? (1 pt)
-- How many words in the `words` file have the word `cat` inside of the word? (1 pt)
+It is expected that all parts are done on your AWS instance (the thing you `ssh` into).
+
+## Part 1 - Regular Expressions
+
+- **Useful commands for this part: `apt`, `find`, `wc`, `|`, `grep`, `egrep`**
+
+1. Use the package manager `apt` to install a package named `wamerican`. Write the command used.
+
+2. You now have a `words` file on your system.  Use the `find` command to find where it is located.  Write the command used and the location of the file.
+
+3. Using `wc`, find out how many words are in the `words` file.
+
+- **For each below, write the `grep` or `egrep` command you used as well as the word count of matches.**
+
+4. How many words in the `words` file start with a vowel (uppercase OR lowercase)?
+
+5. How many words in the `words` file have the word `cat` inside of the word?
   - concatenate, for example, should be a match
-- How many words in the `words` file have a non-alphanumeric character in the word? (1 pt)
+
+6. How many words in the `words` file have a non-alphanumeric character in the word?
   - ' , e with a hat are examples of non-alphanumeric characters
-- How many words in the `words` file have at least one letter `m` in the word? (1 pt)  
-  **Resources**
+
+7. How many words in the `words` file have at least one letter `m` in the word?
+
+- **Resources**
 - [RegEx Cheatsheet](http://web.mit.edu/hackl/www/lab/turkshop/slides/regex-cheatsheet.pdf)
 
-## Part 2: Scripting, Paths, and Arguments, Oh My! (4 pts)
+## Part 2 - .profile and PATH 
 
-1. In your `Lab04` folder, create a folder called `scripts`. Inside that folder, create two scripts, one named `marco` and one named `polo`.
-2. For now, have `marco` and `polo` print a statment to standard output when they are run - `This is from marco` and `This is from polo` respectively.
-3. Add the folder these scripts are located in to your `PATH`. (2 pts)
-- First use the `export` command in you terminal to test you have properly added to the `PATH`. Write this command in your lab notes.
-    - If you really mess this up, log out (`exit`) your AWS Linux connection and `ssh` back in.  You can refer to [here](PATH-backup) to verify it looks how it used to.
-- Test that `marco` and `polo` can now be run in any directory.
-- Add your working `export` command to your home directory's `.profile`.  
-    - If you really mess up, there is a backup `.profile` file [here](.profile-backup).  You can copy and paste the contents.
+1. What is the value of the `PATH` environment variable?
 
-4. Modify `marco` so that when it is run, it should save the current working directory in a file so that `polo` can reference it. (1 pt)
-  - Hint: If `marco` can be ran in any directory and `polo` can be run in any directory, should the path to the file be relative or absolute?
-5. Modify `polo` so that when it is run, it echos the command the user needs to go to the directory `marco` was called in.
+2. Read through your `~/.profile`.  Determine where your binary files and scripts should go in order to be part of the PATH variable.  Write the path.
 
-## Part 3: The Git Part (1 pt)
+3. Make the folder required in the location required.  Write the command(s) used and the full path of the folder.
 
-1. Add a usage guide for `marco` and `polo` to your lab notes.
-2. Use `git` commands to `add`, `commit` and `push` the `Lab04` folder to GitHub.
+4. Reload `~/.profile` either was `source` or by closing and opening the terminal.  What is the value of the `PATH` environment variable?  What was added now vs. in your answer to 1?
 
-## Extra Credit (1 pt):
+5. In Lab 03, you wrote a script.  Copy it into the folder.  Write the command(s) used.
 
-For the `marco` script, when `marco` is run it should check if a path has already been "saved" and ask if the user would like to update the path. Don't forget to `commit` and `push` your updates for grading.
+6. Modify the permissions so that you can run your script on the command line from any location.  Write the modifications needed.  
 
-- [Hint](https://www.cyberciti.biz/faq/linux-unix-script-check-if-file-empty-or-not/)
+7. In terms of user, group, and other, explain who is allowed to run the script.
 
+## Part 3 - Parsing Data
+
+There are all sort of reasons to automate tasks.  Some I do every semester including getting a list of all of your names and emails, then parsing it for only the emails so that I can make accounts for you on different systems (GitHub Classrooms and AWS Educate).  
+
+A sample data list you can use is in [registered-users.txt](registered-users.txt) - you just need to copy its contents to a file on your system.
+
+- ** For starters, create this script in your `Lab04` folder.**
+- Write a script named `parser` that performs the following objectives:
+- Make sure it has permission to be executed.  If you run the script with `source` the `exit` command will make you sad ;)
+
+1. Prompts the user for a file with user and email data.
+    - Verify the file exists.  
+    - If the file does not exist, tell the user they gave you bad input, and `exit` the program
+    - Hint: `read`, `test`, `exit`
+
+2. For the file:  
+    - Parse out only the email address that end in `wright.edu`
+      - There are different approaches: "Remove the junk" OR "Find the good"
+      - There is no explicitly right approach, just the one that works for how you think about the problem
+    - Output the verified emails to `clean-emails.txt`
+      - This output should only contains the emails, and nothing else.
+    - You can use a for loop OR `egrep`, whatever floats your boat.
+
+3. If the script is given the argument `-h`, print out a simple help guide stating:
+    - what the script does
+    - expected input
+    - where output will be stored
+    - ends program after printing the help guide
+    - the help guide should not print unless the `-h` option is given
+    - else the script should run its regular duties
+    - **Note** - this is to make you think about the order of your script
+
+4. Copy your script into your `bin` folder, and make sure it has appropriate permissions to run.  Write the command(s) you used
+
+- **Hints and Resources**
+- Don't dive straight into the script and hope.  Get little parts working.  For example:
+  - On the command line, parse the file with `grep` or `egrep` and see what command(s) are needed to get just the emails
+  - Get a for loop working that prints out each line in the file (if you choose the loop route)
+  - Get an if statement working that triggers in the script is run with `-h` as the argument
+- [Loop through lines in a file](https://codefather.tech/blog/bash-loop-through-lines-file/)
+- [Play with regex and your input](https://regex101.com/)
 
 ## Submission
 
-In your GitHub repository, select the green `Code` button then select `Download ZIP`. Upload this zip file to the Pilot Dropbox.
+1. Verify that your GitHub repo has a `Lab04` folder with at minimum:
+   - `parser`
+   - your input file
+   - `clean-emails.txt`
+   - `Lab04.md`
 
-In the `Comment` area in the Pilot Dropbox, copy URL / link to the repository corresponding to the project your are submitting.
+2. In the Pilot Dropbox, paste the URL to the `Lab04` folder in your GitHub repo
+    - URL should look like: https://github.com/WSU-kduncan/ceg2350-YOURGITHUBUSERNAME/tree/main/Lab04
 
-### Credits:
+## Rubric
 
-Exercise based on https://missing.csail.mit.edu/2020/shell-tools/
+- Part 1 - 1 pt per question
+- Part 2 - 1 pt per question
+- Part 3:
+  - if statement that checks for file existence, else exits - 1 pt
+  - if statement that prints usage guide if argument is `-h` then exits - 1 pt
+  - parses input file for just @wright.edu email addresses - 2 pts
+  - outputs only @wright.edu email addresses to `clean-emails.txt` - 2 pts
+

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+sudoscan()
+{
+        echo you get a full report
+        echo report saved to full-system-report.txt
+        echo "CPU info"
+        lscpu | grep "Model name:"
+        echo "System memory"
+        free -h --total | grep "Total:"
+        echo "Disk space"
+        df -h | egrep "[xs][v?]d*"
+        echo "Disk partition info"
+        sudo fdisk -l /dev/sd* 2> /dev/null && sudo fdisk -l /dev/xvd* 2> /dev/null
+        echo "Looking for GPU"
+        lshw -class display
+}
+scan()
+{
+        echo you get a basic report
+        echo saved to basic-system-report.txt
+        echo "CPU info"
+        lscpu | grep "Model name:"
+        echo "System memory"
+        free -h --total | grep "Total:"
+        echo "Disk space"
+        df -h | egrep "[xs][v?]d*"
+}
+if [ "$(id -u)" != "0"]
+then
+        scan
+        scan > basic-system-report.txt
+
+else
+        sudoscan
+        sudoscan > full-system-report.txt
+fi

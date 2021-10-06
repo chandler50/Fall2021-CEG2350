@@ -1,0 +1,9 @@
+you get a full report
+report saved to full-system-report.txt
+CPU info
+Model name:          Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz
+System memory
+Total:         63Gi       8.0Gi        55Gi
+Disk space
+Disk partition info
+Looking for GPU

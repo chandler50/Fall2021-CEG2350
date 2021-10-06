@@ -21,18 +21,18 @@ b 05
 
 1. Where / how info was found: awsinstance / "lscpu"
     - Answer: Intel, 1, 1
-2. Where / how info was found: awsinstance / "lscpu"
-    - Answer: 1002072
-3. Where / how info was found:
-    - Answer: 478460
-4. Where / how info was found:
+2. Where / how info was found: total mem / "free"
+    - Answer: 0.000125259GB
+3. Where / how info was found: free memory / "vmstat"
+    - Answer: 0.0000330155GB
+4. Where / how info was found:xvda disk / "sudo fdisk --list"
     - Answer:Disklabel type: dos, 0x7dcfac84
-5. Where / how info was found:
+5. Where / how info was found: xvda disk / "sudo fdisk --list"
     - Answer:16G
-6. Where / how info was found:
-    - Answer:(477412)
-7. Where / how info was found:
-    - Answer:
+6. Where / how info was found: free mem / "free"
+    - Answer: 0.000033044GB 
+7. Where / how info was found: devtmpfs / "df -T"
+    - Answer:udev
 
 ## Part 3 Answers
 

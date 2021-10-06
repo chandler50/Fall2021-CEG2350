@@ -26,12 +26,11 @@ scan()
         echo "Disk space"
         df -h | egrep "[xs][v?]d*"
 }
-if [ "$(id -u)" != "0"]
+if [ 'whoami' = root ]
 then
-        scan
-        scan > basic-system-report.txt
-
-else
         sudoscan
         sudoscan > full-system-report.txt
+else
+        scan
+        scan > basic-system-report.txt
 fi

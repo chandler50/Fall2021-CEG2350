@@ -1,0 +1,7 @@
+you get a basic report
+saved to basic-system-report.txt
+CPU info
+Model name:          Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz
+System memory
+Total:         63Gi       8.1Gi        55Gi
+Disk space

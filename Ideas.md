@@ -71,15 +71,6 @@ Find something that people are using AWS for that you would be curious about inv
 
 Note: this is for fun. Have some fun! Personally, I want to play with the AWS Deep Racer
 
-Write a script to cleanup a file of names and emails
-regex is nice
-sed is nice
-"John Smith" <john.smith@gmail.com>
-
-So that just the emails remain:
-john.smith@gmail.com
-
-
 ### Part 5: Play with hard links, soft links, and inodes (11 pts)
 
 1. By default, what does `ln` followed by a filename do?
@@ -127,3 +118,149 @@ For the `marco` script, when `marco` is run it should check if a path has alread
 ### Credits:
 
 Exercise based on https://missing.csail.mit.edu/2020/shell-tools/
+
+
+# Old Lab 05
+
+## Part 1: Write Source Code (2 pts)
+
+1. You may choose _Java_ or _C_ or _C++_ to do the following:
+
+- Write source code that prompts the user to enter text / a string from standard input, then outputs the same string back to standard out. Include your code in your lab write up.
+  - I recommend naming the source code file `repeat` with the appropriate language extension (ie. `repeat.java`, `repeat.c`, `repeat.cpp`).
+  - Code integrity does not matter - you may work together or use things found on the internet or textbooks.
+  - Python only coders - you will be happiest in C. Go about halfway through [this guide](https://www.geeksforgeeks.org/strings-in-c-2/) for starter code. You'll need to add another print statement before the scan statement to prompt the user to enter a string.
+
+## Part 2: Compile Source Code (4 pts)
+
+1. Find the location of the C compiler, `gcc`. Write the command to find out which version of `gcc` is running. (1 pt)  
+   **Useful commands: `whereis, which, man`**
+2. Find the location of the Java compiler, `javac`. Write the command to find out which version of `javac` is running. (1 pt)  
+   **Useful commands: `whereis, which, man`**
+3. Compile your code using the corresponding compiler. Write the command you used to compile your source code. (1 pt)
+4. Run your program. Write the command you used to run your compiled program. (1 pt)
+
+**Resources**
+
+- [Compile a Java Program](https://beginnersbook.com/2013/05/first-java-program/)
+- [Compile a C/C++ Program](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html)
+
+## Part 3: Make that Makefile (3 pts)
+
+1. Create a file called `Makefile`.
+2. Write contents in `Makefile` so that in the shell the following commands perform the following actions:
+   - `make` will compile the program and create an executable version if the source code file exists (1 pt)
+   - `make run` will execute the program if the compiled program exists (1 pt)
+   - `make clean` will delete the compiled program (1 pt)
+
+**Resources**
+
+- [Sample Java Makefile in this folder](./Makefile-Java)
+- [Sample C/C++ Makefile in the folder](./Makefile-C)
+- [Makefile in C](https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html#C)
+- [Makefile in Java](https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html#java)
+
+## Part 4: The Git Part (1 pt)
+
+1. In your `README.md` file, add details on how to run your program manually & how to run your program with the `make` command. 
+2. Use `git` commands to `add`, `commit` and `push` the `Lab05` folder to GitHub.
+
+## Extra Credit (2 pt):
+
+- Create an additional source code file that the original uses as a dependency. Perhaps your main code file calls on a function that is detailed in the other file (function can do a simple action, like print a message).
+  - You may use an old / existing multifile project (again, just need to require compilation)
+- Modify your `Makefile` to compile the original file & its new dependency. Note that your `Makefile` should have an updated version of the pre requisites to compile the program.
+- Don't forget to `commit` and `push` your updates for grading.
+
+
+## Lab 06 OLD
+## Part 1: Self Discovery (5 pts)
+
+Find out the following information about your personal system. Write the answers to the information requested.
+
+- You can use the manufactuers website / manuals
+- Windows users, I recommend `msinfo`
+- You should _not_ need to install additional programs to find this information. If someone tells you to install something, run away.
+
+1. BIOS version / mode. (1 pt)
+2. CPU brand and info. (0.5 pt)
+3. Installed memory size. (0.5 pt)
+4. Virtual memory size. Does you system have a pagefile or a swapfile? What does this mean? (1 pt)
+5. File system on installed disk(s). (0.5 pt)
+6. Number of partitions. Which partition is your primary partition? (0.5 pt)
+7. Get to your UEFI BIOS. Note what you did to access it. Then run away. (1 pt)
+   - If you don't own the machine (and therefore may not be able to access the BIOS), lookup information about the machine and what steps would have worked.
+   - Note for Chromebook users: Document what your tried and what you learned about your system.
+   - Note for Mac users: [This article](https://www.techwalla.com/articles/macbook-efi-access) may help
+
+## Part 2: Exploration (5 pts)
+
+Use your AWS / Ubuntu system to discover the following information.
+
+1. Read `/boot/grub/menu.lst`. What boot options would the `grub` menu present? (1 pt)
+   - Note: since we are using a remote connection, we will never see / interact with the `grub` menu. But it is still there.
+2. Using the command `df -h`, determine how much disk space is used and how much space is free. (1 pt)
+3. Run the command `sudo parted -l` to answer the following:
+   - What is the primary disk in the `/dev` folder? (.33 pt)
+   - What type of partition table is the device using? (.33 pt)
+     - Hint: If it looks unfamilar, use Google to find a more common name
+   - What file system is used by the device? (.33 pt)
+4. Use `lshw` to find the following:
+   - BIOS version (.33 pt)
+   - CPU brand and info (.33 pt)
+   - Memory size (.33 pt)
+5. Does this system have a swap file (use virtual memory)? Write how you checked. (1 pt)
+   - [Hint](https://unix.stackexchange.com/questions/23072/how-can-i-check-if-swap-is-active-from-the-command-line)
+
+
+## Part 1: Create a filesystem from a file to store files (10 pts)
+
+Perform the following in your AWS instance.  For this part, work in your user's home directory (`/home/ubuntu`), not your repository.  Your answers will still go in your `README.md` file associated with this lab.
+
+1. Create a file of a defined amount of space: `dd if=/dev/zero of=space bs=1024 count=0 seek=$[1024*100]`
+   - Explain `if` and `of` (.33 pt)
+   - Explain what `/dev/zero` is (.33 pt)
+   - What size file was created? (.33 pt)
+2. Create a filesystem on this file.  Write the command you used. (1 pt)
+   - **Useful commands:** `mkfs`
+3. Mount the filesystem to your home directory in the folder `usable`.  Write the command you used. (1 pt)
+   - **Useful commands:** `mount`, `mkdir`
+4. Check to see if the filesystem was mounted according to the output of `df -h`  Paste the line that indicates where it was mounted and space usage (1 pt)
+   - Notes: you may see and be wondering about `/dev/loop#`  loop is what happens when you are using a file that has a filesystem inside, which is exactly what happened - we used `dd` to create a file filled with 0's, then we used `mkfs` to have the file be a filesystem.
+   - [More info on `/dev/loop#`](https://en.wikipedia.org/wiki/Loop_device)
+5. Go in to the folder `usable` and create some new files with some text inside.  Write the steps this took and if you changed permission sets. (1 pt)
+6. Unmount the filesystem currently mounted to `usable`.  Write the command you used. (1 pt)
+   - **Useful commands:** `umount`
+7. Can you still access the files?  Why or why not? (1 pt)
+8. While the filesystem is still unmounted, run `strings` on `space`.  What do you see?  Can you see the contents of your files? (1 pt)
+   - Notes: `cat` would work, but also might act like its hanging.  `strings` is kind of like `cat` but it will ONLY print the strings of printable characters in files.
+9. Mount the filesystem once more, and delete / remove one of the files.  Unmount the filesystem, and run `strings` again.  Can you see the contents of your files? (1 pt)
+   - Notes: this is the big scary deal about data and disks and making sure data gets overwritten on a disk if the data needs to truly go away.  When you delete a file, all you've done is delete the inode association (you can't vim it, and you can't use an inode to get back to it), but the data is still written to the disk until it is overwritten (which could happen given enough time).  Removing a file is like throwing away a letter.  If the letter is still whole, it can be pulled back out and read.
+10. Add this filesystem to be automounted by the OS using `/etc/fstab` Write the line you added to `/etc/fstab` (1 pt)
+      - Hint: the line should be in the format of:
+         - `/absolute/path/to/filesystem` **tab** `/absolute/path/to/directory/to/mount/to` **tab** `defaults` **tab** `0 0`
+         - [More info on `fstab`](https://en.wikipedia.org/wiki/Fstab)
+      - Test your changes using the 'mount -a' command.  What does this command do?  
+      - Use `df -h` or head back to your `usable` folder to verify the mount worked (as in the file(s) you didn't delete should be viewable in the folder with `ls`)
+
+**Just in Case Resources:**
+- [Mount broken volume to new system](https://www.xtivia.com/blog/recovering-aws-instance-doesnt-start/)
+
+## Part 2: Gitting Branchy (6 pts)
+
+1. Create a branch in your git repository called `development`
+2. Switch to the branch.
+3. Edit `README.md` to include the commands you used to create the branch and switch to the branch. (2 pts)
+4. Push your changes (and your branch) to remote (GitHub) (1 pt - visual check)
+   - Note: if you try `git push` git will spit out a helpful hint
+5. On GitHub, switch to the branch and confirm that your edits to `README.md` exist in the `development` branch's version of the file, but not in the `main` branch's version.
+6. Switch back to the `master`/`main` branch.
+7. Merge the `development` branch with the `master`/`main` branch.
+8. Edit `README.md` to include the commands you used to switch back to the `master`/`main` branch and merge the `development` branch with `master`/`main` (2 pts)
+9. Push the `master`/`main` branch to remote (GitHub). 
+10. In GitHub, confirm your file now exits in `master`/`main` with both the changes for branch creation and branch merging. (1 pt - visual check)
+
+**Resources:**
+
+- [Git Branches in a Nutshell](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+- [Git - Basic Branching & Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)

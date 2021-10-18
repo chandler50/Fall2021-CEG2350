@@ -41,30 +41,47 @@
         - emails from list of output
             - from survey, has mix of emails.  Want just @wright.edu emails
         - data from csv? - data needs to be formatted columar style
+    - FUTURE?
     - use usernames from emails to bulk do something?
         - create files with username
         - put a `fortune` in each file
     - ec is check for contents before overwrite
-- move marco/polo to processes
 
-# Lab 06
+# Lab 05
 - explore your own hardware
 - explore the VM resources on AWS
-- ~~inodes & hard / symbolic links~~ - move to lab on fs
+- script to scrape for info on linux / bash
 
+# Lab 06
+- install VirtualBox 
+    - Mac M1 peeps - UMT is free, Parallels discounted through Cats
+- install OS on VM
+- On Linux VM 
+    - change desktop background
+    - open browser and navigate to site
+    - install VSCode
+    - ssh in to AWS instance
 
 # Lab 07
-- Create a folder and layer on a filesystem
 - Mount xvdb, create partition table, create partition, add to /etc/fstab? - NEW
 - use strings to explore what "deletion" means on something on a disk
-- git branches
+- inodes & hard / symbolic links
+- ec: Create a folder and layer on a filesystem
+
+# Lab ##
+- tar'ing
+- ~/.ssh/config
+- create key pair for bob (authorized_keys)
+- sftp
+- checksums
 
 # Lab 08
 - create a script that runs infinitely
 - run the script "normally" and kill via PID
 - run the script with bg and kill via job ID
 - run in screen
-- modified marco / polo - playing with where scripts run (in subshell) - bring it to current shell
+- marco/polo script
+    - pay attention to PATH and file locations
 - EC is create and solve a merge conflict
 
 # Lab 05
@@ -73,6 +90,7 @@
 - debug an error with GDB - NEW
 - write a makefile
 - ec is add dependent file (function / library that "main" relies on)
+- git branches
 
 # Lab 09
 - explore your internet connection and the AWS internet connection

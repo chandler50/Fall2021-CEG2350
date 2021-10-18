@@ -1,77 +1,127 @@
-# Lab 05 - NOT FINALIZED
+# Lab 05
+
+- [Lab Procedure](#Lab-Procedure)
+- [Part 1 - Self Discovery](#Part-1---Self-Discovery)
+- [Part 2 - AWS Instance Exploration](#Part-2---AWS-Instance-Exploration)
+- [Part 3 - Info Finder](#Part-3---Info-Finder)
+- [Extra Credit - `date` stamp](#Extra-Credit---`date`-stamp)
+- [Submission](#Submission)
+- [Rubric](#Rubric)
 
 ## Lab Procedure
 
-**For each step, include the command you used to perform the direction or answer the question posed.** If you did something "wrong" make a note of it in your lab. These are learning experiences - writing them down will help you ask good questions later.  
-`ssh` in to your AWS environment. If you've forgotten your key, you'll need to provision a new stack in AWS Educate and create a new key.  
-See [Remaking your AWS Educate environment](../../..) for instructions.
+In your terminal, head to your repository (the folder named `ceg2350-yourgithubusername).
 
-1. Go to the folder in which you cloned your Git repository for this course.
-   - Path of `/home/ubuntu/spring2021-ceg2350-YOURGITHUBUSERNAME/` OR `/home/ubuntu/git/spring2021-ceg2350-YOURGITHUBUSERNAME/` depending on your setup
-2. Create a directory called `Lab05`
-   - Path of `/home/ubuntu/spring2021-ceg2350-YOURGITHUBUSERNAME/Lab05` OR `/home/ubuntu/git/spring2021-ceg2350-YOURGITHUBUSERNAME/Lab05` depending on your setup
-3. In this directory, create a file called `README.md`
-4. This `README.md` file is where you will put your answers to this lab. I recommend creating two connections to your Linux AWS so you can keep the `README.md` file open while you expirement with the lab.
-   - At the top of the file please enter your personal details as follows:
+Create a new directory, `Lab05`
 
+This lab will have you creating input files, scripts, and output files.  All of your work should be found here.
+
+Same questions will need you to write anwers in `Lab05.md` the [LabTemplate.md is here](LabTemplate.md).
+   - [Raw version of LabTemplate.md](https://raw.githubusercontent.com/pattonsgirl/Fall2021-CEG2350/main/Labs/Lab05/LabTemplate.md)
+
+For each part below, you will be asked to do an action or answer a question.  The actions are going to be commands - you will write the command you used as "answers" to the action requested.  You are allowed to use multiple commands to solve an action.  Just write down all that were needed to complete.  Check with the TAs if you need clarification.
+
+If you did something "wrong" make a note of it in your lab. These are learning experiences - writing them down will help you ask good questions later. 
+
+## Part 1 - Self Discovery
+
+Find out the following information about your personal system. Write the answers to the information requested.  Part of this is learning about your system, so some info will not be findable.  Provide confirmation of your findings where possible.  
+
+For example, my laptop does not have a dedicated gpu card.  I can run commands whose output will confirm there is no GPU
+
+- You can use the manufactuers website / manuals
+- Windows users, I recommend `msinfo`
+- You should _not_ need to install additional programs to find this information. If someone tells you to install something, run away.
+
+1. CPU brand, number of cores, and number of logical cores
+2. Physical memory size (translate to GB)
+3. Virtual memory size (translate to GB)
+   - Does your system have a pagefile, and if so where is it?
+4. Disk type / model
+5. Disk size (translate to GB)
+6. Remaining disk space (translate to GB)
+7. File system used on primary partition
+   - C partition for Windows users
+   - / partition for Linux / Mac(?) users
+8. BIOS mode / version
+9. Note whether or not your BIOS / UEFI is accessible, and what steps shoud let you access it.
+10. ~~System bootloader and location~~ removed 9/29
+
+## Part 2 - AWS Instance Exploration
+
+Use your AWS / Ubuntu system to discover the following information.  Part of this is learning about a system, so some info will not be findable.  Provide confirmation of your findings where possible.  
+
+For example, this system does not have a dedicated gpu card.  I can run commands whose output will confirm there is no GPU
+
+- **Useful commands for this part: `lscpu`, `free`, `vmstat`, `lsblk`, `df`, `fdisk --list`**
+
+1. CPU brand, number of cores, and number of logical cores
+2. Physical memory size (translate to GB)
+3. Virtual memory size (translate to GB)
+   - Does your system have a pagefile, and if so where is it?
+   - https://phoenixnap.com/kb/linux-commands-check-memory-usage 
+4. Disk type / model
+   - https://www.cyberciti.biz/faq/find-hard-disk-hardware-specs-on-linux/
+   - https://askubuntu.com/questions/166083/what-is-the-dev-xvda1-device
+5. Disk size (translate to GB)
+6. Remaining disk space (translate to GB)
+7. File system used on primary partition
+   - Focus on the ID column - https://www.win.tue.nl/~aeb/partitions/partition_types-1.html
+8. ~~System bootloader and location~~ - removed 9/29
+
+## Part 3 - Info Finder
+
+You could see that manually raoming around tracking down system information could be clunky over enough time over enough systems.  So, we are going to focus on the important bits via a script.  
+
+You have also noticed that some of these commands only run as a certian user (or with certian user priviledges)
+
+1. Check out the list of commands in [command-list.txt](command-list.txt)
+2. Create a script in your Lab05 folder named `sys-info`.  Give the script appropriate permissions to be executable.
+   - Note: I don't care about PATH knowing where it is
+3. `sys-info` should perform the following tasks:
+   - If the script is run with `sudo` / as `root`, run a full sytstem report using all commands listed in `command-list.txt`
+      - Store the output in a file named `full-system-report.txt`
+   - Else, run only the commands that a regular user can run without `sudo`
+      - Store the output in a file named `basic-system-report.txt`
+
+- Hints: 
+   - [Identify sudo use with whoami](https://www.baeldung.com/linux/identify-user-called-by-sudo)
+   - [Have script check user ID](https://www.cyberciti.biz/tips/shell-root-user-check-script.html)
+
+
+Sample execution:
 ```
-Name: Your name
-Email: Your email
-
+$ ./sys-info
+You get a basic report
+Report saved to basic-system-report.txt
+$ sudo ./sys-info
+Running a full report, sir.
+Report saved to full-system-report.txt
 ```
 
-## Part 1: Write Source Code (2 pts)
+## Extra Credit - `date` stamp
 
-1. You may choose _Java_ or _C_ or _C++_ to do the following:
-
-- Write source code that prompts the user to enter text / a string from standard input, then outputs the same string back to standard out. Include your code in your lab write up.
-  - I recommend naming the source code file `repeat` with the appropriate language extension (ie. `repeat.java`, `repeat.c`, `repeat.cpp`).
-  - Code integrity does not matter - you may work together or use things found on the internet or textbooks.
-  - Python only coders - you will be happiest in C. Go about halfway through [this guide](https://www.geeksforgeeks.org/strings-in-c-2/) for starter code. You'll need to add another print statement before the scan statement to prompt the user to enter a string.
-
-## Part 2: Compile Source Code (4 pts)
-
-1. Find the location of the C compiler, `gcc`. Write the command to find out which version of `gcc` is running. (1 pt)  
-   **Useful commands: `whereis, which, man`**
-2. Find the location of the Java compiler, `javac`. Write the command to find out which version of `javac` is running. (1 pt)  
-   **Useful commands: `whereis, which, man`**
-3. Compile your code using the corresponding compiler. Write the command you used to compile your source code. (1 pt)
-4. Run your program. Write the command you used to run your compiled program. (1 pt)
-
-**Resources**
-
-- [Compile a Java Program](https://beginnersbook.com/2013/05/first-java-program/)
-- [Compile a C/C++ Program](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html)
-
-## Part 3: Make that Makefile (3 pts)
-
-1. Create a file called `Makefile`.
-2. Write contents in `Makefile` so that in the shell the following commands perform the following actions:
-   - `make` will compile the program and create an executable version if the source code file exists (1 pt)
-   - `make run` will execute the program if the compiled program exists (1 pt)
-   - `make clean` will delete the compiled program (1 pt)
-
-**Resources**
-
-- [Sample Java Makefile in this folder](./Makefile-Java)
-- [Sample C/C++ Makefile in the folder](./Makefile-C)
-- [Makefile in C](https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html#C)
-- [Makefile in Java](https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html#java)
-
-## Part 4: The Git Part (1 pt)
-
-1. In your `README.md` file, add details on how to run your program manually & how to run your program with the `make` command. 
-2. Use `git` commands to `add`, `commit` and `push` the `Lab05` folder to GitHub.
-
-## Extra Credit (2 pt):
-
-- Create an additional source code file that the original uses as a dependency. Perhaps your main code file calls on a function that is detailed in the other file (function can do a simple action, like print a message).
-  - You may use an old / existing multifile project (again, just need to require compilation)
-- Modify your `Makefile` to compile the original file & its new dependency. Note that your `Makefile` should have an updated version of the pre requisites to compile the program.
-- Don't forget to `commit` and `push` your updates for grading.
+- Use the `date` command to make a better filename.  Instead of `*-system-report.txt`, the filename should now be `*-system-report-0927.txt`, for example.  I'll allow for any use of the `date` command as long as it adds some useful timestamping to the report generation.
+   - Hint: https://www.cyberciti.biz/faq/unix-linux-appleosx-bsd-shell-appending-date-to-filename/ 
 
 ## Submission
 
-In your GitHub repository, select the green `Code` button then select `Download ZIP`. Upload this zip file to the Pilot Dropbox.
+1. Verify that your GitHub repo has a `Lab05` folder with at minimum:
+   - `Lab05.md`
+   - `sys-info`
+   - `basic-system-report.txt` (or the ec version of report name)
+   - `full-system-report.txt` (or the ec version of report name)
 
-In the `Comment` area in the Pilot Dropbox, copy URL / link to the repository corresponding to the project your are submitting.
+
+2. In the Pilot Dropbox, paste the URL to the `Lab05` folder in your GitHub repo
+    - URL should look like: https://github.com/WSU-kduncan/ceg2350-YOURGITHUBUSERNAME/tree/main/Lab05
+
+## Rubric
+
+- Part 1 - 1 pt per question - 9 pts total
+- Part 2 - 1 pt per question - 7 pts total
+- Part 3 - 6 pts total
+   - can detect if script is run with sudo / as root - 2 pts
+   - outputs basic report if run as regular user - 2 pt
+   - outputs full report if run with sudo / root priviledges - 2 pt
+- EC - 2.2 pts - 10% 

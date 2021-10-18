@@ -1,0 +1,28 @@
+## Lab 03
+
+- Name: Cole Chandler
+- Email chandler.56@wright.edu
+
+## Part 1 Answers
+
+1. alias aws2350= "ssh -i ceg2350-aws-vm.pem ubuntu@34.226.156.228"
+2. yes
+3. absolute
+4. ~/.bashrc
+5. yes
+
+## Part 2 Answers
+
+1. Verify here that input.txt made it to GitHub in your `Lab03` folder
+2. sort input.txt
+3. sort input.txt > output.txt
+
+## Script Usage Guide
+
+1. How to run
+2. What extensions are expected
+3. What is the output
+
+## Extra Credit
+
+1. Note here if you did the extra credit so the tas can verify :)

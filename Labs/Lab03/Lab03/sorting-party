@@ -1,0 +1,8 @@
+#!/bin/bash
+
+filename="$1"
+if [[$filename =~ [".txt"]$ ]]; then
+        echo sort filename > "sorted.txt"
+else
+	echo "File extension not allowed"
+fi

@@ -82,7 +82,7 @@ For each step below, write the answer to the question / prompt and how you found
    - Like other commands we have played with, `strings` has more capabilities.  We are going to use it to show you something interesting about data...
 10. Delete a file that you created on the partition.  Run `strings` on the partition again - read through the output and see if anything surprises you - what's up?
    - This is a neat trick that starts getting towards digital forensics.  You can assume most people trust that when they hit delete, stuff got deleted.  But the contents may still exist on the disk until they are overwritten...
-11. [Read through this article](https://www.howtogeek.com/425232/how-to-securely-delete-files-on-linux/) and determine a way to truly delete a file.  Write a shot report of steps and proof that the file is no longer readable on the disk.
+11. [Read through this article](https://www.howtogeek.com/425232/how-to-securely-delete-files-on-linux/) and determine a way to truly delete a file.  Write a short report of steps and proof that the file is no longer readable on the disk.
 12. Umount the partition.  Can you still interact with the files and folders?
 
 
@@ -110,7 +110,7 @@ For each step below, write the answer to the question / prompt and how you found
    - Subquestion scoring:
    - Q2 (0.25) pts per bullet
    - Q4 - Q7 (0.2) pts per bullet
-- Part 2 - 1 pt per question - 13 pts total
+- Part 2 - 1 pt per question - 12 pts total
 - Extra credit - 10% (2 pts)
 
 
